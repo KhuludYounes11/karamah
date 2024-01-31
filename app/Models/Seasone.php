@@ -33,4 +33,8 @@ class Seasone extends Model
     {
         return $this->hasMany(Wear::class);
     }
+    public function information():MorphMany
+    {
+     return $this->morphMany(Information::class,'information_able');
+    }
 }

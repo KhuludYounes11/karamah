@@ -23,7 +23,7 @@ class Association extends Model
     }
     public function topFans():object
     {
-        return $this->hasMany(TopFan::class);
+        return $this->hasOne(TopFan::class);
     }
     public function videos():MorphMany
     {

@@ -20,6 +20,6 @@ class Information extends Model
     public function videos():MorphMany
     {
      return $this->morphMany(Video::class,'video_able');
-
     }
+   
 }

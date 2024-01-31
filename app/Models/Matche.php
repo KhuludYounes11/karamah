@@ -44,6 +44,10 @@ class Matche extends Model
      return $this->morphMany(Video::class,'video_able');
 
     }
+    public function information():MorphMany
+    {
+     return $this->morphMany(Information::class,'information_able');
+    }
    
 }
 
