@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('information', function (Blueprint $table) {
+        Schema::create('informations', function (Blueprint $table) {
             $table->id();
             $table->uuid();
             $table->string('title');
             $table->string('content');
             $table->string('image');
-            $table->integer('reads');
+            $table->integer('reads')->nullable();
             $table->enum('type',['strategy','news','regular','slider']);
             $table->morphs('information_able');
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('information');
+        Schema::dropIfExists('informations');
     }
 };

@@ -14,6 +14,6 @@ class Boss extends Model
         'start_year','image'
     ];
     protected $casts = [
-        'start_year'=>'year',
+       // 'start_year'=>'year',
     ];
 }

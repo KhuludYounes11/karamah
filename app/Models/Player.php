@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $fillable = [ 
        'uuid', 'name',
         'high',
         'play','number','born','from','first_club','career','image','sport_id'
     ];
     protected $casts = [
         'high'=>'integer',
-        'play'=>'integer',
         'born'=>'date',
         'number'=>'integer',
-        'sport_id'=>'integer','type'=>'enum'
+        'sport_id'=>'integer',
     ];
     public function plan():object
     {

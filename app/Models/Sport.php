@@ -40,6 +40,6 @@ class Sport extends Model
     }
     public function information():MorphMany
     {
-     return $this->morphMany(Information::class,'video_able');
+     return $this->morphMany(Information::class,'information_able');
     }
 }

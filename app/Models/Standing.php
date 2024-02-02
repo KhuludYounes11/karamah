@@ -21,7 +21,7 @@ class Standing extends Model
         'matche_id'=>'integer',
         'club_id'=>'integer',
     ];
-    public function seasion():object
+    public function seasone():object
     {
         return $this->belongsTo(Seasone::class);
     }

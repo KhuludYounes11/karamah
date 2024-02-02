@@ -14,9 +14,10 @@ class Matche extends Model
         'status','plan','channel','round','play_ground','seasone_id','club1_id','club2_id'
     ];
     protected $casts = [
-        'inplayer'=>'integer',
-        'outplayer'=>'integer',
-        'matche_id'=>'integer',
+        'when'=>'datetime',
+        'club1_id'=>'integer',
+        'club2_id'=>'integer',
+        'seasone_id'=>'integer',
         'status'=>'enum'
     ];
     public function plan():object

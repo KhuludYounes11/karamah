@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('bosses', function (Blueprint $table) {
