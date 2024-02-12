@@ -2,15 +2,9 @@
 
 namespace App\Http\Resources;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
-use App\Models\Matche;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Carbon\Carbon;
-
-class VideoResource extends JsonResource
+class SeasoneResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,16 +13,14 @@ class VideoResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-
     {
-
-
-    {$date=Carbon::setLocale('ar');
         return [
             'uuid'=>$this->uuid,
-            'url'=>$this->url,
-            'description' =>$this->description,
-            'created_at'=>$this->created_at->diffForHumans(),
-    
-         ];
+            'name'=>$this->name,
+            'start_date'=>$this->start_date,
+            'end_date'=>$this->end_date,
+
+
+        ];
     }
+}

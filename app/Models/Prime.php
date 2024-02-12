@@ -15,7 +15,7 @@ class Prime extends Model
     ];
     protected $casts = [
         'seasone_id'=>'integer',
-        'sport_id'=>'integer','type'=>'enum'
+        'sport_id'=>'integer',
     ];
     public function sport():object
     {

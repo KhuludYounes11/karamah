@@ -16,7 +16,7 @@ class Plan extends Model
     protected $casts = [
         'player_id'=>'integer',
         'matche_id'=>'integer',
-        'status'=>'enum',
+       
     ];
     public function player():object
     {
