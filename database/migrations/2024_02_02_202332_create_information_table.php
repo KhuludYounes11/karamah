@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wears', function (Blueprint $table) {
+        Schema::create('information', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->string('name');
-            
+            $table->string('title');
+            $table->string('content');
             $table->string('image');
-            $table->bigInteger('seasone_id')->unsigned();
-            $table->foreign('seasone_id')->on('seasones')->references('id')->onDelete('cascade');
-            $table->bigInteger('sport_id')->unsigned();
-            $table->foreign('sport_id')->on('sports')->references('id')->onDelete('cascade');
+            $table->integer('reads')->nullable();
+            $table->enum('type',['strategy','news','regular','slider']);
+            $table->morphs('information_able');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wears');
+        Schema::dropIfExists('informations');
     }
 };

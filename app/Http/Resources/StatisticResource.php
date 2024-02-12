@@ -5,7 +5,9 @@ namespace App\Http\Resources;
 use App\Models\Statistic;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
+
 use Illuminate\Http\Resources\Json\ResourceCollection;
+
 class StatisticResource extends JsonResource
 {
     /**
@@ -15,6 +17,7 @@ class StatisticResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
+
    {       
       
    $filteredContactData = json_decode( $this->value, true);
@@ -29,4 +32,5 @@ class StatisticResource extends JsonResource
 
    ];
 }
+
 }

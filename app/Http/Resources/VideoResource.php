@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 
+
 use Illuminate\Http\Resources\Json\JsonResource;
-
-
 use App\Models\Matche;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
@@ -20,8 +19,7 @@ class VideoResource extends JsonResource
      */
     public function toArray($request)
 
-    {
-
+  
 
     {$date=Carbon::setLocale('ar');
         return [
@@ -32,3 +30,4 @@ class VideoResource extends JsonResource
     
          ];
     }
+

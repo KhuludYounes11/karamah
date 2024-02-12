@@ -11,17 +11,19 @@ class Wear extends Model
     protected $fillable = [
         'uuid',
         'image',
-        'seasone_id','sport_id'
+        'seasone_id', 'sport_id'
     ];
+
     protected $casts = [
-        'seasone_id'=>'integer',
-        'sport_id'=>'integer'
+        'seasone_id' => 'integer',
+        'sport_id' => 'integer'
     ];
-    public function sport():object
+    public function sport(): object
     {
         return $this->belongsTo(Sport::class);
     }
-    public function seasone():object
+
+    public function seasone(): object
     {
         return $this->belongsTo(Seasone::class);
     }
