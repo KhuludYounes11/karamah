@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
+        Schema::create('information', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->string('name');
-            $table->json('value');
-            $table->bigInteger('matche_id')->unsigned();
-            $table->foreign('matche_id')->on('matches')->references('id')->onDelete('cascade');
+            $table->string('title');
+            $table->string('content');
+            $table->string('image');
+            $table->integer('reads')->default('0');
+            $table->enum('type',['strategy','news','regular','slider']);
+            $table->morphs('information_able');
             $table->timestamps();
         });
-    } 
+    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statistics');
+        Schema::dropIfExists('information');
     }
 };

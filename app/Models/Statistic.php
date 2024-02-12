@@ -15,9 +15,9 @@ class Statistic extends Model
     ];
     protected $casts = [
         'matche_id'=>'integer',
-        'value'=>'json'
+       // 'value'=>'json'
     ];
-    public function match():object
+    public function matche():object
     {
         return $this->belongsTo(Matche::class,'matche_id');
     }

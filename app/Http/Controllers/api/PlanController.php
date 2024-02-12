@@ -3,35 +3,21 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Sport;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\PlanResource;
 use App\Http\Traits\GeneralTrait;
-use App\Http\Resources\SportResource;
-class SportController extends Controller
-{ use GeneralTrait;
+use App\Models\Plan;
+use App\Models\Player;
+use Illuminate\Http\Request;
+
+class PlanController extends Controller
+{
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        try {
-            $data = Sport::all();
-            $sport=SportResource::collection($data);
-            return $this->apiResponse($sport,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -53,21 +39,27 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   
+     public function show($matche_id)
+     {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+     
+         try {
+             $players = Plan::where('matche_id', $matche_id)
+                 ->where('status', 'beanch')
+                 ->get();
+                 $player = PlanResource::collection($players);
+            
+             
+            return $this->apiResponse([
+                
+                 $player,
+            ]);
+         } catch (\Exception $e) {
+             return response()->json(['error' => 'Players not found.'], 404);
+         }
+     }
+    
 
     /**
      * Update the specified resource in storage.

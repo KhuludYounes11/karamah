@@ -3,37 +3,30 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Sport;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\top_fansResource;
 use App\Http\Traits\GeneralTrait;
-use App\Http\Resources\SportResource;
-class SportController extends Controller
-{ use GeneralTrait;
+use App\Models\TopFan;
+use Illuminate\Http\Request;
+
+class top_fansController extends Controller
+{
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+  
     public function index()
     {
         try {
-            $data = Sport::all();
-            $sport=SportResource::collection($data);
-            return $this->apiResponse($sport,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            $topFans = TopFan::all();
+            $top_fansResource=top_fansResource::collection($topFans);
+            return $this->apiResponse($top_fansResource);
+        } catch (\Exception $e) {
+            return $this->apiResponse($e->getMessage(),500);
+        }
     }
 
     /**
@@ -53,20 +46,18 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $topFan = TopFan::where('uuid', $uuid)->first();
+            if (!$topFan) {
+                return $this->apiResponse('Resource not found', 404);
+            }
+            $top_fans=new top_fansResource($topFan);
+            return $this->apiResponse( $top_fans,200);
+        } catch (\Exception $e) {
+            return $this->apiResponse('Failed to retrieve resource', 500);
+        }
     }
 
     /**

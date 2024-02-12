@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SeasoneResource;
+use App\Models\Seasone;
 use Illuminate\Http\Request;
-use App\Models\Sport;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Traits\GeneralTrait;
-use App\Http\Resources\SportResource;
-class SportController extends Controller
-{ use GeneralTrait;
+
+class SeasoneController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -17,23 +16,15 @@ class SportController extends Controller
      */
     public function index()
     {
-        try {
-            $data = Sport::all();
-            $sport=SportResource::collection($data);
-            return $this->apiResponse($sport,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
         //
+        try{
+        $seasone = Seasone::all();
+        return $this->apiResponse(SeasoneResource::collection($seasone));
+        }
+        catch (\Exception $e){
+            return $this->apiResponce($e->getMessage(), 500);
+        }
+     
     }
 
     /**
@@ -53,20 +44,27 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
-    }
+        try{
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+            $seasone= Seasone::where('uuid',$uuid)->firstOrFail();
+            $resource= new SeasoneResource($seasone);
+             return $this->apiResponse($resource);
+
+        }
+        catch(\Exception $e){
+            return $this->apiResponseError($e->getMessage(), 500);
+        }
+
+        /* try {
+            $prime = Prime::where('uuid', $uuid)->firstOrFail();
+            $resource = new PrimsResource($prime);
+
+            return $this->apiResponse($resource);
+        } catch (\Exception $e) {
+            return $this->apiResponseError($e->getMessage(), 500);
+        }*/
     }
 
     /**

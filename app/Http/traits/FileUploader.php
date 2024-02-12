@@ -3,7 +3,6 @@
 namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 trait FileUploader
 {
@@ -11,19 +10,15 @@ trait FileUploader
     {
         $requestFile = $request->file($inputName);
         try {
-            $dir = 'public/files/'.$name;
-            $fixName = $data->id.'-'.$name.'.'.$requestFile->extension();
-                     //time()
+            $dir = 'public/files/' . $name;
+            $fixName = $data->id . '-' . $name . '.' . $requestFile->extension();
+
             if ($requestFile) {
                 Storage::putFileAs($dir, $requestFile, $fixName);
-                $request->file = 'files/'.$name.'/'.$fixName;
-
-                $data->update([
-                    $inputName => $request->file,
-                ]);
+                $request->file = 'files/' . $name . '/' . $fixName;
             }
 
-            return true;
+            return $request->file;
         } catch (\Throwable $th) {
             report($th);
 
@@ -31,12 +26,11 @@ trait FileUploader
         }
     }
 
-    // delete file
     public function deleteFile($fileName = 'files')
     {
         try {
             if ($fileName) {
-                Storage::delete('public/files/'.$fileName);
+                Storage::delete('public/files/' . $fileName);
             }
 
             return true;
@@ -47,36 +41,19 @@ trait FileUploader
         }
     }
 
-    /**
-     * For Upload Images.
-     * @param mixed $request
-     * @param mixed $data
-     * @param mixed $name
-     * @param mixed|null $inputName
-     * @return bool|string
-     */
     public function uploadImage($request, $data, $name, $inputName = 'image')
     {
         $requestFile = $request->file($inputName);
         try {
-            $dir = 'public/images/'.$name;
-            // $dir = 'images/'.$name;
-            $fixName = time().'-'.$name.'.'.$requestFile->extension();
-//time()
-
+            $dir = 'public/images/' . $name;
+            $fixName = time() . '-' . $name . '.' . $requestFile->extension();
 
             if ($requestFile) {
-                  $r=  Storage::putFileAs($dir, $requestFile, $fixName);
-                // $r = $requestFile->storeAs($dir, $fixName,'public');
-                // $requestFile->move(public_path($dir), $fixName);
-                 $request->image = $fixName;
-
-                // $data->update([
-                //     $inputName => $request->image,
-                // ]);
+                Storage::putFileAs($dir, $requestFile, $fixName);
+                $request->image = $fixName;
             }
 
-            return $r;
+            return $fixName;
         } catch (\Throwable $th) {
             report($th);
 
@@ -87,9 +64,8 @@ trait FileUploader
     public function uploadPhoto($request, $data, $name)
     {
         try {
-            $dir = 'public/photos/'.$name;
-            $fixName = $data->id.'-'.$name.'.'.$request->file('photo')->extension();
-
+            $dir = 'public/photos/' . $name;
+            $fixName = $data->id . '-' . $name . '.' . $request->file('photo')->extension();
             if ($request->file('photo')) {
                 Storage::putFileAs($dir, $request->file('photo'), $fixName);
                 $request->photo = $fixName;
@@ -105,25 +81,10 @@ trait FileUploader
         }
     }
 
-
-    // use Validator; // Import the Validator facade if not already imported
-
-    // // ...
-
-
-
-
     public function uploadMultiImage($request, $data, $name, $inputName = 'images')
     {
-        // Ensure the request has the files for the given input name
-        // if (!$request->hasFile($inputName)) {
-        //     return ['status' => 'Error', 'message' => 'No files found for the input name: ' . $inputName];
-        // }
-
         $requestFiles = $request->file($inputName);
 
-        // Check if the input is an array
-        // var_dump($requestFiles);
         if (!is_array($requestFiles)) {
             return ['status' => 'Error', 'message' => 'The input must be an array of files for: ' . $inputName];
         }
@@ -131,7 +92,7 @@ trait FileUploader
         $uploadedImages = [];
 
         foreach ($requestFiles as $file) {
-            $dir = 'images/' . $name;
+            $dir = 'public/images/' . $name;
             $fixName = $data->id . '-' . $name . '_'  . $file->getClientOriginalExtension();
 
             if ($file) {
@@ -142,8 +103,6 @@ trait FileUploader
             }
         }
 
-        // Return array of uploaded images URLs
         return $uploadedImages;
     }
 }
- 

@@ -14,12 +14,14 @@ class Standing extends Model
         'lose', 'draw', '+/-', 'points', 'play', 'seasone_id', 'club_id'
     ];
     protected $casts = [
-        'win' => 'integer',
-        'draw' => 'integer',
-        'lose' => 'integer',
-        //'+/-' => 'integer',
-        'matche_id' => 'integer',
-        'club_id' => 'integer',
+
+        'win'=>'integer',
+        'draw'=>'integer',
+        'lose'=>'integer',
+        '+/-'=>'integer',
+        'seasone_id'=>'integer',
+        'club_id'=>'integer',
+
     ];
     public function seasone(): object
     {

@@ -14,20 +14,19 @@ class PlayerResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
+    {$date=Carbon::setLocale('ar');
         return [
+            
+            'uuid'=>$this->uuid,
             'name' =>$this->name,
             'image' => $this->image,
-            'play'=>$this->play,
             'from'=>$this->from,
             'first_club'=>$this->first_club,
             'career'=>$this->career,
-            'high'=>$this->high,
+            'high'=>$this->high."cm",
             'number'=>$this->number,
             'born'=>$this->born->format('d F Y'),
-            'sport'=>$this->sport->name,
-            'created_at'=>$this->created_at->diffForHumans(),
-            'updated_at'=>$this->updated_at->diffForHumans(),  
+           // 'sport'=>$this->sport->name,  
        ];
     }
 }

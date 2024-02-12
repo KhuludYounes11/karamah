@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Models\Sport;
+
 use Illuminate\Http\Resources\Json\JsonResource;
-use Carbon\Carbon;
-class SportResource extends JsonResource
+
+class PlanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,13 @@ class SportResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid'=>$this->uuid,
-             'image' => $this->image, 
+           
+            //'uuid' => $this->uuid,
+            'status' => $this->status,
+            'player_id' => $this->player->name,
+        //    'matche_id' => $this->matche_id,
+        //    'created_at' => $this->created_at,
+          //  'updated_at' => $this->updated_at,
         ];
     }
 }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Sport;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\VideosResource;
 use App\Http\Traits\GeneralTrait;
-use App\Http\Resources\SportResource;
-class SportController extends Controller
-{ use GeneralTrait;
+use App\Models\Video;
+use Illuminate\Http\Request;
+
+class VideoController extends Controller
+{
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -17,24 +18,17 @@ class SportController extends Controller
      */
     public function index()
     {
-        try {
-            $data = Sport::all();
-            $sport=SportResource::collection($data);
-            return $this->apiResponse($sport,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
+
+        
+    try {
+        $videos = Video::all();
+        $video=VideosResource::collection($videos);
+        return $this->apiResponse($video);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Failed to retrieve videos.'], 500);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+}
 
     /**
      * Store a newly created resource in storage.
@@ -53,20 +47,15 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $video = Video::where('uuid', $uuid)->firstOrFail();
+            $videoResource=VideosResource::collection($video);
+            return $this->apiResponse($videoResource);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Video not found.'], 404);
+        }
     }
 
     /**
