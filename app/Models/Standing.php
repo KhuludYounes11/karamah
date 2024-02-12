@@ -18,10 +18,10 @@ class Standing extends Model
         'draw'=>'integer',
         'lose'=>'integer',
         '+/-'=>'integer',
-        'matche_id'=>'integer',
+        'seasone_id'=>'integer',
         'club_id'=>'integer',
     ];
-    public function seasion():object
+    public function seasone():object
     {
         return $this->belongsTo(Seasone::class);
     }

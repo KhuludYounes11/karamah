@@ -21,7 +21,7 @@ class Wear extends Model
     {
         return $this->belongsTo(Sport::class);
     }
-    public function seasion():object
+    public function seasone():object
     {
         return $this->belongsTo(Seasone::class);
     }

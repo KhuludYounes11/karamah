@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Sport extends Model
 {
     use HasFactory;
@@ -40,6 +40,6 @@ class Sport extends Model
     }
     public function information():MorphMany
     {
-     return $this->morphMany(Information::class,'video_able');
+     return $this->morphMany(Information::class,'information_able');
     }
 }

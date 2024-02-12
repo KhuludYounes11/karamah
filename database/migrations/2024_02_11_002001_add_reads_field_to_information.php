@@ -11,16 +11,10 @@ return new class extends Migration
      *
      * @return void
      */
-    
     public function up()
     {
-        Schema::create('bosses', function (Blueprint $table) {
-            $table->id();
-            $table->uuid();
-            $table->string('name');
-            $table->string('image');
-            $table->year('start_year');
-            $table->timestamps();
+        Schema::table('information', function (Blueprint $table) {
+            $table->integer('reads')->default('0');
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bosses');
+        Schema::table('information', function (Blueprint $table) {
+            $table->dropColumn('reads');
+        });
     }
 };

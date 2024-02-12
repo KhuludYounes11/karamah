@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('image');
-            $table->integer('reads');
+            $table->integer('reads')->default('0');
             $table->enum('type',['strategy','news','regular','slider']);
             $table->morphs('information_able');
             $table->timestamps();

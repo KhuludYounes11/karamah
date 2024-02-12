@@ -1,16 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-
-
-use Illuminate\Http\Resources\Json\JsonResource;
-
-
-use App\Models\Matche;
+use App\Models\Sport;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
-
-class VideoResource extends JsonResource
+class SportResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,16 +13,10 @@ class VideoResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-
     {
-
-
-    {$date=Carbon::setLocale('ar');
         return [
             'uuid'=>$this->uuid,
-            'url'=>$this->url,
-            'description' =>$this->description,
-            'created_at'=>$this->created_at->diffForHumans(),
-    
-         ];
+             'image' => $this->image, 
+        ];
     }
+}
