@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->string('name');
+            
             $table->string('image');
             $table->bigInteger('seasone_id')->unsigned();
             $table->foreign('seasone_id')->on('seasones')->references('id')->onDelete('cascade');

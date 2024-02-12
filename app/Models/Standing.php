@@ -11,23 +11,22 @@ class Standing extends Model
     protected $fillable = [
         'uuid',
         'win',
-        'lose','draw','+/-','points','play','seasone_id','club_id'
+        'lose', 'draw', '+/-', 'points', 'play', 'seasone_id', 'club_id'
     ];
     protected $casts = [
-        'win'=>'integer',
-        'draw'=>'integer',
-        'lose'=>'integer',
-        '+/-'=>'integer',
-        'matche_id'=>'integer',
-        'club_id'=>'integer',
+        'win' => 'integer',
+        'draw' => 'integer',
+        'lose' => 'integer',
+        //'+/-' => 'integer',
+        'matche_id' => 'integer',
+        'club_id' => 'integer',
     ];
-    public function seasone():object
+    public function seasone(): object
     {
         return $this->belongsTo(Seasone::class);
     }
-    public function club():object
+    public function club(): object
     {
         return $this->belongsTo(Club::class);
     }
-    
 }

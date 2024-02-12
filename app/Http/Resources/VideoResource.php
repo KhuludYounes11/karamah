@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Information;
+use App\Models\Matche;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 
-class InformationResource extends JsonResource
+class VideoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,13 +18,10 @@ class InformationResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'title' => $this->title,
-            'content' => $this->content,
-            'image' => $this->image,
-            'reads' => $this->reads,
-            'type' => $this->type,
+            'url' => $this->url,
+            'description' => $this->description,
             'created_at' => $this->created_at->diffForHumans(),
-            //'updated_at'=>$this->updated_at->diffForHumans(),
+
         ];
     }
 }

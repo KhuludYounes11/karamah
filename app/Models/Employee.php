@@ -9,15 +9,18 @@ class Employee extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'uuid','name',
+        'uuid',
+        'name',
         'jop_type',
-        'work','sport_id'
+        'work',
+        'sport_id'
     ];
+
     protected $casts = [
-        'sport_id'=>'integer',
-        'jop_type'=>'enum'
+        'sport_id' => 'integer',
+        //'jop_type' => 'enum'
     ];
-    public function sport():object
+    public function sport(): object
     {
         return $this->belongsTo(Sport::class);
     }

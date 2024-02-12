@@ -10,26 +10,26 @@ class Replacment extends Model
     use HasFactory;
     protected $fillable = [
         'uuid',
-        'inplayer',
-        'outplayer','matche_id'
+        'inplayer_id',
+        'outplayer_id',
+        'matche_id'
     ];
     protected $casts = [
-        'inplayer'=>'integer',
-        'outplayer'=>'integer',
-        'matche_id'=>'integer',
+        'inplayer_id' => 'integer',
+        'outplayer_id' => 'integer',
+        'matche_id' => 'integer',
     ];
-    public function inplayer():object
+    
+    public function inplayer(): object
     {
-        return $this->belongsTo(Club::class,'inplayer_id');
+        return $this->belongsTo(Player::class, 'inplayer_id');
     }
-    public function outplayer():object
+    public function outplayer(): object
     {
-        return $this->belongsTo(Club::class,'outplayer_id');
+        return $this->belongsTo(Player::class, 'outplayer_id');
     }
-    public function match():object
+    public function match(): object
     {
-        return $this->belongsTo(Matche::class,'matche_id');
+        return $this->belongsTo(Matche::class, 'matche_id');
     }
-
-
 }

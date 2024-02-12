@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Information extends Model
 {
@@ -11,15 +12,18 @@ class Information extends Model
     protected $fillable = [
         'uuid',
         'title',
-        'content','image','reads','type','information_able'
+        'content',
+        'image',
+        'reads',
+        'type',
+        'information_able'
     ];
     protected $casts = [
-        'type'=>'enum'
+        //'type' => 'enum'
     ];
 
-    public function videos():MorphMany
+    public function videos(): MorphMany
     {
-     return $this->morphMany(Video::class,'video_able');
+        return $this->morphMany(Video::class, 'video_able');
     }
-   
 }

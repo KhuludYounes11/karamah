@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Statistic;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Carbon\Carbon;
 
-class StatisticResource extends JsonResource
+class EmployeeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +15,11 @@ class StatisticResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'uuid' => $this->uuid,
             'name' => $this->name,
-            'value' => $this->value,
-            'club1' => $this->match->club1->name,
-            'club2' => $this->match->club2->name,
-            'created_at' => $this->created_at->diffForHumans(),
-            'updated_at' => $this->updated_at->diffForHumans(),
+            'work' => $this->work,
+            'job' => $this->jop_type,
+            'sport' => $this->sport->name,
         ];
     }
 }
