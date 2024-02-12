@@ -4,9 +4,12 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Sport;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Traits\GeneralTrait;
+use App\Http\Resources\SportResource;
 class SportController extends Controller
-{
+{ use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,13 @@ class SportController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $data = Sport::all();
+            $sport=SportResource::collection($data);
+            return $this->apiResponse($sport,true,null,200);
+            } catch (\Exception $e) {
+                return $this->apiResponse(null,0, $e->getMessage(),500);
+            }
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Models\Sport;
+
+use App\Models\Player;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
-class SportResource extends JsonResource
+class PlayerShowResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,10 +14,16 @@ class SportResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
+    {$date=Carbon::setLocale('ar');
         return [
+            
             'uuid'=>$this->uuid,
-             'image' => $this->image, 
-        ];
+            'name' =>$this->name,
+            'image' => $this->image,
+           'play'=>$this->play,
+            'high'=>$this->high."cm",
+            'number'=>$this->number,
+           'age'=>Carbon::parse($this->born)->age,
+       ];
     }
 }

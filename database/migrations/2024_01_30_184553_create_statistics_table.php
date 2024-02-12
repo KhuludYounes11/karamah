@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('matche_id')->on('matches')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

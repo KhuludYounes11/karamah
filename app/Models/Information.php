@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Information extends Model
 {
     use HasFactory;
@@ -14,12 +15,13 @@ class Information extends Model
         'content','image','reads','type','information_able'
     ];
     protected $casts = [
-        'type'=>'enum'
+       // 'type'=>'enum'
     ];
-
-    public function videos():MorphMany
+    public function information_able():MorphTo{
+        return $this->morphTo();
+    }
+    public function video():MorphMany
     {
      return $this->morphMany(Video::class,'video_able');
     }
-   
 }

@@ -7,6 +7,7 @@ use  App\Http\Controllers\api\StatisticController;
 use App\Http\Controllers\api\BossController;
 use  App\Http\Controllers\api\SportController;
 use App\Http\Controllers\api\MatcheController;
+use App\Http\Controllers\api\InformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +29,26 @@ Route::prefix('/boss')->group(function () {
     });
 Route::prefix('/player')->group(function () {
      Route::get('/view',[PlayerController::class,'index'])->name('player.index');
-     Route::get('/show/{id}',[PlayerController::class,'show'])->name('player.show');
+     Route::get('/show/{uuid}',[PlayerController::class,'show'])->name('player.show');
     });
 Route::prefix('/statistic')->group(function () {
-    Route::get('/view',[StatisticController::class,'index'])->name('statistic.index');
-    Route::get('/show/{id}',[StatisticController::class,'show'])->name('statistic.show');
+  //  Route::get('/show/{uuid}',[StatisticController::class,'show'])->name('statistic.show');
     });
 Route::prefix('/sport')->group(function () {
     Route::get('/view',[SportController::class,'index'])->name('sport.index');
-    Route::get('/show/{id}',[SportController::class,'show'])->name('sport.show');
     });
+    Route::prefix('/information')->group(function () {
+        Route::get('/view',[InformationController::class,'index'])->name('information.index');
+        Route::get('/RecentlyNews',[InformationController::class,'RecentlyNews'])->name('RecentlyNews');
+        Route::get('/RecentlyaddedNews',[InformationController::class,'RecentlyaddedNews'])->name('RecentlyaddedNews');
+        });
 Route::prefix('/match')->group(function () {
     Route::get('/view',[MatcheController::class,'index'])->name('match.index');
-    Route::get('/show/{id}',[MatcheController::class,'show'])->name('match.show');
+    Route::get('/show/{uuid}',[MatcheController::class,'show'])->name('match.show');
+    Route::get('/showMatch/{uuid}',[MatcheController::class,'showMatch'])->name('showMatch');
+    Route::get('/currentMatch',[MatcheController::class,'currentMatch'])->name('currentMatch');
+    Route::get('/MatchDate/{date}',[MatcheController::class,'MatchDate'])->name('MatchDate');
+    Route::get('/newPage/{uuid}',[MatcheController::class,'newPage'])->name('newPage');
+    Route::get('/Date',[MatcheController::class,'Date'])->name('Date');
+    
     });

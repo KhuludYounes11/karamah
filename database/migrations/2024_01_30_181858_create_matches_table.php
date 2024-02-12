@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->datetime('when');
-            $table->enum('status',['not_started','finished']);
+           // $table->enum('status',['not_started','finished']);
             $table->string('plan');
             $table->string('channel');
             $table->string('round');
@@ -33,6 +33,7 @@ return new class extends Migration
     }
 
     /**
+     * 
      * Reverse the migrations.
      *
      * @return void

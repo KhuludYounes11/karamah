@@ -18,7 +18,7 @@ class Standing extends Model
         'draw'=>'integer',
         'lose'=>'integer',
         '+/-'=>'integer',
-        'matche_id'=>'integer',
+        'seasone_id'=>'integer',
         'club_id'=>'integer',
     ];
     public function seasone():object

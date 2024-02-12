@@ -8,6 +8,7 @@ use App\Models\Player;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Traits\GeneralTrait;
 use App\Http\Resources\PlayerResource;
+use App\Http\Resources\PlayerShowResource;
 class PlayerController extends Controller
 { use GeneralTrait;
     /**
@@ -18,12 +19,18 @@ class PlayerController extends Controller
     public function index()
     {
         try {
-            $data = Player::all();
-            $boss=PlayerResource::collection($data);
-            return $this->apiResponse($boss,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
+            $defener = Player::where('play','المدافع')->get();
+            $goalkeeper= Player::where('play','حارس مرمى ')->get();
+            $middleline= Player::where('play','خط وسط')->get();
+            $attacker = Player::where('play','هجوم')->get();
+            $data['المدافعون'] = PlayerResource::collection($defener);
+            $data['حراس المرمى'] = PlayerResource::collection($goalkeeper);
+            $data['خط الوسط'] = PlayerResource::collection($middleline);
+            $data['المهاجمون'] = PlayerResource::collection($attacker);
+            return $this->apiResponse($data,true,null,200);
+        } catch (\Exception $e) {
+            return $this->apiResponse(null, 0, $e->getMessage(), 500);
+        }
     }
 
     /**
@@ -53,12 +60,12 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
         try {
-            $data = Player::findOrFail($id);
-            $boss=PlayerResource::make($data);
-            return $this->apiResponse($boss,true,null,200);
+            $data = Player::where('uuid',$uuid)->first();
+            $player=PlayerShowResource::make($data);
+            return $this->apiResponse($player,true,null,200);
         } catch (\Exception $e) {
             return $this->apiResponse(null,0, $e->getMessage(),500);
         }

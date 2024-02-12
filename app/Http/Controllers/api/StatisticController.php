@@ -17,13 +17,7 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        try {
-            $data = Statistic::all();
-            $boss=StatisticResource::collection($data);
-            return $this->apiResponse($boss,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
+      //
     }
 
     /**
@@ -53,16 +47,17 @@ class StatisticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        try {
-            $data = Statistic::findOrFail($id);
-            $boss=StatisticResource::make($data);
-            return $this->apiResponse($boss,true,null,200);
-        } catch (\Exception $e) {
-            return $this->apiResponse(null,0, $e->getMessage(),500);
-        }
-    }
+  // إحصائيات المباراة
+    public function show($uuid)
+     {
+        /* try {
+             $data = Statistic::where('uuid',$uuid)->first();
+             $stat=StatisticResource::collection($data);
+             return $this->apiResponse($stat, true, null, 200);
+         } catch (\Exception $e) {
+             return $this->apiResponse(null, 0, $e->getMessage(), 500);
+         }*/
+     }  
 
     /**
      * Show the form for editing the specified resource.
