@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Seasone;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Carbon\Carbon;
 class SeasoneResource extends JsonResource
 {
     /**
@@ -14,6 +14,7 @@ class SeasoneResource extends JsonResource
      */
     public function toArray($request)
     {
+        $date=Carbon::setLocale('ar');
         return [
             'uuid'=>$this->uuid,
             'name'=>$this->name,

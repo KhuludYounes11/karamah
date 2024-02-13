@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Models\TopFan;
 class top_fansResource extends JsonResource
 {
     /**
@@ -14,6 +14,7 @@ class top_fansResource extends JsonResource
      */
     public function toArray($request)
     {
+        $date=Carbon::setLocale('ar');
         return [
             'id' => $this->id,
             'uuid' => $this->uuid,

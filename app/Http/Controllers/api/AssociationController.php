@@ -49,7 +49,7 @@ class AssociationController extends Controller
 public function store(Request $request)
 {
     $validator = Validator::make($request->all(), [
-      ,
+      
         'boss' => 'required|string',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'description' => 'string',

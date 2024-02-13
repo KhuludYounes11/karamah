@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Association;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Carbon\Carbon;
 class AssociationResource extends JsonResource
 {
     /**
@@ -13,7 +13,7 @@ class AssociationResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
+    {$date=Carbon::setLocale('ar');
         return [
             'uuid' => $this->uuid,
             'boss' => $this->boss,
@@ -21,8 +21,8 @@ class AssociationResource extends JsonResource
             'description' => $this->description,
             'country' => $this->country,
             'sport_id' => $this->sport_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->diffForHumans(),
+            'updated_at' => $this->updated_at->diffForHumans(),
         ];
     }
 }

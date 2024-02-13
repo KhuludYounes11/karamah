@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Plan;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlanResource extends JsonResource

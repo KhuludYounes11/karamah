@@ -2,8 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Prime;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Carbon\Carbon;
 class PrimsResource extends JsonResource
 {
     /**
@@ -14,6 +15,7 @@ class PrimsResource extends JsonResource
      */
     public function toArray($request)
     {
+        $date=Carbon::setLocale('ar');
         return [
             
             'uuid' => $this->uuid,
@@ -25,8 +27,8 @@ class PrimsResource extends JsonResource
          
             'sport_name' => $this->sport->name,
         
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->diffForHumans(),
+            'updated_at' => $this->updated_at->diffForHumans(),
         ];
     }
   

@@ -28,8 +28,6 @@ class Matche extends Model
         return $this->hasOne(Plan::class, 'matche_id');
     }
 
-    public function club1(): object
-
     public function statistic()
     {
         return $this->hasMany(Statistic::class);
@@ -53,7 +51,7 @@ class Matche extends Model
         return $this->hasMany(Replacment::class, 'matche_id');
     }
 
-    public function videos(): MorphMany
+    public function video(): MorphMany
 
     {
         return $this->morphMany(Video::class, 'video_able');

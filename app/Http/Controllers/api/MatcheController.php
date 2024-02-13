@@ -61,15 +61,7 @@ class MatcheController extends Controller
         }
     }
     
-  /* public function scopeUpcoming()
-{
-  try {
-    $date = Carbon::now()->addDays(7)->format('Y-m-d');
-    return $this->apiResponse($date,true,null,200);
-    } catch (\Exception $e) {
-        return $this->apiResponse(null,0, $e->getMessage(),500);
-    }
-}*/
+
 //all date for match
 public function Date()
 {
@@ -81,17 +73,7 @@ public function Date()
             return $this->apiResponse(null,0, $e->getMessage(),500);
         }
 }
-    // المباراة حسب التاريخ
-    public function MatchDate($uuid)
-    {
-        try {
-            $data = Matche::findOrFail($uuid);
-            $match=MatcheStatisticResource::collection($data);
-            return $this->apiResponse($match,true,null,200);
-            } catch (\Exception $e) {
-                return $this->apiResponse(null,0, $e->getMessage(),500);
-            }
-    }
+  
 
     
 

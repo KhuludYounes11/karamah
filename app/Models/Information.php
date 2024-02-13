@@ -25,10 +25,7 @@ class Information extends Model
         //'type' => 'enum'
     ];
 
-    public function videos(): MorphMany
-
-       // 'type'=>'enum'
-    ];
+   
     public function information_able():MorphTo{
         return $this->morphTo();
     }

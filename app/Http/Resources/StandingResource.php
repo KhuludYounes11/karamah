@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Standing;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StandingResource extends JsonResource

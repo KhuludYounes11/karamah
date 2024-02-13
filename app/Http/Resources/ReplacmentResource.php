@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use App\Models\Replacment;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReplacmentResource extends JsonResource

@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Http\Resources;
-
-
-
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Matche;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Video;
 use Carbon\Carbon;
 
 class VideoResource extends JsonResource
@@ -18,10 +14,8 @@ class VideoResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-
-  
-
-    {$date=Carbon::setLocale('ar');
+    {
+        $date=Carbon::setLocale('ar');
         return [
             'uuid'=>$this->uuid,
             'url'=>$this->url,
@@ -30,4 +24,4 @@ class VideoResource extends JsonResource
     
          ];
     }
-
+}
